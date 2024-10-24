@@ -104,19 +104,24 @@
         $('.select').change(selectCategory);
 
         function selectCategory() {
-          $('.list').children().each(displayCategory)
+          const value = $('.select').val();
+          const listItem = $('.list').children();
+          if (value === 'all') {
+            listItem.show();
+          } else {
+            listItem.each(function(index, element) {
+              displayCategory(index, element, value, listItem);
+            })
+          }
         }
 
-        function displayCategory(index, element) {
-          const value = $('.select').val();
-          const data = $('.list').children().eq(index).data('category-type');
+        function displayCategory(index, element, value, listItem) {
+          const data = listItem.eq(index).data('category-type');
           if (value === data) {
             $(element).show();
-          } else if (value === 'all') {
-            $(element).show();
-            } else {
-                $(element).hide();
-              }
+          } else {
+            $(element).hide();
+          }
         }
       });
     </script>
