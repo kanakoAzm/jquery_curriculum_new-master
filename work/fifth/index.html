@@ -109,14 +109,15 @@
           if (value === 'all') {
             listItem.show();
           } else {
-            listItem.each(function(index, element) {
-              displayCategory(index, element, value, listItem);
+            listItem.each(function(_index, element) {
+              displayCategory(element, value);
             })
           }
         }
 
-        function displayCategory(index, element, value, listItem) {
-          const data = listItem.eq(index).data('category-type');
+        function displayCategory(element, value) {
+          // const data = listItem.eq(index).data('category-type');
+          const data = $(element).data('category-type');
           if (value === data) {
             $(element).show();
           } else {
